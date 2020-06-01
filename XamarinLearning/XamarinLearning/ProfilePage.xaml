@@ -7,9 +7,24 @@
              x:Class="XamarinLearning.ProfilePage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Profile Page!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="--"
+                   HorizontalOptions="Center" 
+                   x:Name="PostCountLabel"
+                   TextColor="DodgerBlue"
+                   FontAttributes="Bold"/>
+            <Label Text="posts"
+                   HorizontalOptions="Center"
+                   TextColor="LightGray"></Label>
+
+            <ListView x:Name="CategoriesListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Path=Key}" Detail="{Binding Path=Value}">
+
+                        </TextCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

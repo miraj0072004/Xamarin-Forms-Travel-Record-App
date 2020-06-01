@@ -16,6 +16,8 @@ namespace XamarinLearning
         public LoginPage()
         {
             InitializeComponent();
+            var assembly = typeof(LoginPage);
+            iconImage.Source = ImageSource.FromResource("XamarinLearning.Assets.Images.plane.png", assembly);
         }
 
         private void LoginButton_OnClicked(object sender, EventArgs e)

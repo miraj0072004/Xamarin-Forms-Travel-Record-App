@@ -8,10 +8,10 @@
              x:Class="XamarinLearning.HomePage">
 
     <TabbedPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="MenuItem_OnClicked"></ToolbarItem>
+        <ToolbarItem Text="Add" IconImageSource="add.png" Clicked="MenuItem_OnClicked"></ToolbarItem>
     </TabbedPage.ToolbarItems>
     
-    <local:ProfilePage Title="Profile"></local:ProfilePage>
-    <local:MapPage Title="Map"></local:MapPage>
-    <local:HistoryPage Title="History"></local:HistoryPage>
+    <local:ProfilePage IconImageSource="user.png" Title="Profile"></local:ProfilePage>
+    <local:MapPage IconImageSource="map.png" Title="Map"></local:MapPage>
+    <local:HistoryPage IconImageSource="home.png" Title="History"></local:HistoryPage>
 </TabbedPage>
