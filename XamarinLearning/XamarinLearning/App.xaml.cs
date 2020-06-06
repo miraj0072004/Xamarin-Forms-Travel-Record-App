@@ -1,6 +1,8 @@
 ﻿using System;
+using Microsoft.WindowsAzure.MobileServices;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinLearning.Models;
 
 namespace XamarinLearning
 {
@@ -8,6 +10,10 @@ namespace XamarinLearning
     {
 
         public static string DatabaseLocation = string.Empty;
+        public static MobileServiceClient MobileService =
+            new MobileServiceClient("https://travelrecordmirajapp.azurewebsites.net");
+
+        public static Myuser user = new Myuser();
         public App()
         {
             InitializeComponent();

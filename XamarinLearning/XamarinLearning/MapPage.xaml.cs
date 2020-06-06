@@ -34,13 +34,17 @@ namespace XamarinLearning
             var span = new Xamarin.Forms.Maps.MapSpan(center,2 ,2);
             locationsMap.MoveToRegion(span);
 
-            using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
-            {
-                conn.CreateTable<Post>();
-                var posts = conn.Table<Post>().ToList();
+            //using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+            //{
+            //    conn.CreateTable<Post>();
+            //    var posts = conn.Table<Post>().ToList();
 
-                DisplayInMaps(posts);
-            }
+            //    DisplayInMaps(posts);
+            //}
+
+            var posts = await App.MobileService.GetTable<Post>().
+                Where(p => p.UserId == App.user.Id).ToListAsync();
+            DisplayInMaps(posts);
         }
 
         protected override async void OnDisappearing()

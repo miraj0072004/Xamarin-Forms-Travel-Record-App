@@ -8,7 +8,8 @@ namespace XamarinLearning.Models
     public class Post
     {
         [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        //public int Id { get; set; } //We use this for Sqlite
+        public string Id { get; set; } //We use this for Azure
 
         [MaxLength(250)]
         public string Experience { get; set; }
@@ -20,6 +21,7 @@ namespace XamarinLearning.Models
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public int Distance { get; set; }
+        public string UserId { get; set; }
 
     }
 }

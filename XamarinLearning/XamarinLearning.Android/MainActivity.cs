@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Microsoft.WindowsAzure.MobileServices;
 using Environment = System.Environment;
 
 namespace XamarinLearning.Droid
@@ -23,6 +24,7 @@ namespace XamarinLearning.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.FormsMaps.Init(this, savedInstanceState);
+            CurrentPlatform.Init();
 
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState); //my addition
 

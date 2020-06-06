@@ -31,7 +31,7 @@ namespace XamarinLearning
             VenueListView.ItemsSource = venues;
         } 
 
-        private void MenuItem_OnClicked(object sender, EventArgs e)
+        private async void MenuItem_OnClicked(object sender, EventArgs e)
         {
             try
             {
@@ -47,32 +47,37 @@ namespace XamarinLearning
                     Distance = selectedVenue.location.distance,
                     Latitude = selectedVenue.location.lat,
                     Longitude = selectedVenue.location.lng,
-                    VenueName = selectedVenue.name
+                    VenueName = selectedVenue.name,
+                    UserId = App.user.Id
                 };
 
 
-                using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
-                {
-                    conn.CreateTable<Post>();
-                    int rows = conn.Insert(post);
+                //using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+                //{
+                //    conn.CreateTable<Post>();
+                //    int rows = conn.Insert(post);
 
-                    if (rows > 0)
-                    {
-                        DisplayAlert("Success", "Experience successfully inserted", "Ok");
-                    }
-                    else
-                    {
-                        DisplayAlert("Failure", "Experience inserted failed", "Ok");
-                    }
-                }
+                //    if (rows > 0)
+                //    {
+                //        DisplayAlert("Success", "Experience successfully inserted", "Ok");
+                //    }
+                //    else
+                //    {
+                //        DisplayAlert("Failure", "Experience inserted failed", "Ok");
+                //    }
+                //}
+
+                await App.MobileService.GetTable<Post>().InsertAsync(post);
+                await DisplayAlert("Success","Experience successfully inserted", "Ok");
+
             }
             catch (NullReferenceException nre)
             {
-
+                await DisplayAlert("Failure", "Experience inserted failed", "Ok");
             }
             catch (Exception ex)
             {
-
+                await DisplayAlert("Failure", "Experience inserted failed", "Ok");
             }
 
             
