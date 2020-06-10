@@ -54,36 +54,11 @@ namespace XamarinLearning
             //    CategoriesListView.ItemsSource = categoriesCount;
             //}
 
-            
-                var postTable = await App.MobileService.GetTable<Post>().
-                    Where(p => p.UserId == App.user.Id).ToListAsync();
+
+            var postTable = await Post.Read();
             PostCountLabel.Text = postTable.Count.ToString();
 
-                var categories = postTable.OrderBy(x => x.CategoryName)
-                    .Select(x => x.CategoryName)
-                    .Distinct()
-                    .ToList();
-                //Another way of writing the above query
-                //var categories = (from p in postTable
-                //    orderby p.CategoryName
-                //    select p.CategoryName).Distinct().ToList();
-
-
-                Dictionary<string, int> categoriesCount = new Dictionary<string, int>();
-
-                foreach (var category in categories)
-                {
-                    var count = postTable.Where(x => x.CategoryName == category).ToList().Count;
-
-                    //Another way of writing the above query
-                    //var count = (from p in postTable
-                    //    where p.CategoryName == category
-                    //    select p).ToList().Count;
-                    var categoryToAssign = category ?? "Empty";
-                    categoriesCount.Add(categoryToAssign, count);
-                }
-
-                CategoriesListView.ItemsSource = categoriesCount;
+            CategoriesListView.ItemsSource = await Post.CategoryCount(postTable);
             
         }
     }

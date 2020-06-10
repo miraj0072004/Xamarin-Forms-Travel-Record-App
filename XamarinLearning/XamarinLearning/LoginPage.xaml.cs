@@ -23,39 +23,17 @@ namespace XamarinLearning
 
         private async void LoginButton_OnClicked(object sender, EventArgs e)
         {
-            
+            var canLogin = await Myuser.Login(emailEntry.Text, passwordEntry.Text);
 
-            var emailText = emailEntry.Text;
-            var passwordText = passwordEntry.Text;
-
-            if (string.IsNullOrEmpty(emailText) || string.IsNullOrEmpty(passwordText))
+            if (canLogin)
             {
-                
+                await Navigation.PushAsync(new HomePage());
             }
             else
             {
-                var user = (await App.MobileService.GetTable<Myuser>().
-                    Where(u => u.Email == emailEntry.Text).ToListAsync()).FirstOrDefault();
-
-                if (user != null)
-                {
-                    App.user = user;
-                    if (user.Password == passwordEntry.Text)
-                    {
-                        await Navigation.PushAsync(new HomePage());
-                    }
-                    else
-                    {
-                        await DisplayAlert("Error","Email or Password is incorrect", "Ok");
-                    }
-                }
-                else
-                {
-                    await DisplayAlert("Error", "There was an error logging you in", "Ok");
-                }
-                
-                
+                await DisplayAlert("Error", "Try again", "Ok");
             }
+
         }
 
         private void RegisterUserButton_OnClicked(object sender, EventArgs e)

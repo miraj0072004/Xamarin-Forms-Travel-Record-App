@@ -14,9 +14,14 @@ namespace XamarinLearning
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RegisterPage : ContentPage
     {
+        private Myuser user;
+
         public RegisterPage()
         {
             InitializeComponent();
+
+            user = new Myuser();
+            registerStackLayout.BindingContext = user;
         }
 
         private async void RegisterButton_OnClicked(object sender, EventArgs e)
@@ -24,14 +29,13 @@ namespace XamarinLearning
             if (passwordEntry.Text == confirmPasswordEntry.Text)
             {
                 //We register the user
-                Myuser user = new Myuser
-                {
-                    Email = emailEntry.Text,
-                    Password = passwordEntry.Text
-                };
+                //Myuser user = new Myuser
+                //{
+                //    Email = emailEntry.Text,
+                //    Password = passwordEntry.Text
+                //};
 
-                await App.MobileService.GetTable<Myuser>().InsertAsync(user);
-
+                Myuser.Register(user);
             }
             else
             {

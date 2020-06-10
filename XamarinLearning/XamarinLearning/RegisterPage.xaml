@@ -5,19 +5,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="XamarinLearning.RegisterPage">
-    <StackLayout VerticalOptions="Center" Margin="20">
+    <StackLayout VerticalOptions="Center" Margin="20" x:Name="registerStackLayout">
         <!-- Place new controls here -->
         
         <Entry x:Name="emailEntry"
                Placeholder="Email Address"
                Keyboard="Email"
                TextColor="{StaticResource blueColor}"
-               Text="sample"/>
+               Text="{Binding Email, Mode=TwoWay}"/>
         <Entry x:Name="passwordEntry"
                Placeholder="Password"
                IsPassword="True"
                TextColor="{StaticResource blueColor}"
-               Text="sample"/>
+               Text="{Binding Password, Mode=TwoWay}"/>
         <Entry x:Name="confirmPasswordEntry"
                Placeholder="Confirm password"
                IsPassword="True"
