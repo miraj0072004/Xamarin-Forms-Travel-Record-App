@@ -8,7 +8,7 @@
              x:Class="XamarinLearning.HomePage">
 
     <TabbedPage.ToolbarItems>
-        <ToolbarItem Text="Add" IconImageSource="add.png" Clicked="MenuItem_OnClicked"></ToolbarItem>
+        <ToolbarItem Text="Add" IconImageSource="add.png" Command="{Binding navCommand}"></ToolbarItem>
     </TabbedPage.ToolbarItems>
     
     <local:ProfilePage IconImageSource="user.png" Title="Profile"></local:ProfilePage>

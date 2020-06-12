@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinLearning.ViewModels;
 
 namespace XamarinLearning
 {
@@ -15,11 +16,13 @@ namespace XamarinLearning
         public HomePage()
         {
             InitializeComponent();
+            HomeVM homeVm = new HomeVM();
+            BindingContext = homeVm;
         }
 
-        private void MenuItem_OnClicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new NewTravelPage());
-        }
+        //private void MenuItem_OnClicked(object sender, EventArgs e)
+        //{
+        //    Navigation.PushAsync(new NewTravelPage());
+        //}
     }
 }
