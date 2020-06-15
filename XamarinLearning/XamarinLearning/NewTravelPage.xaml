@@ -6,11 +6,13 @@
              mc:Ignorable="d"
              x:Class="XamarinLearning.NewTravelPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Save" IconImageSource="save.png" Clicked="MenuItem_OnClicked"></ToolbarItem>
+        <ToolbarItem Text="Save" IconImageSource="save.png"
+                     Command="{Binding AddPostCommand}"
+                     CommandParameter="{Binding Experience}"></ToolbarItem>
     </ContentPage.ToolbarItems>
     <StackLayout x:Name="postStackLayout">
-        <Entry x:Name="ExperienceEntry" Text="{Binding Experience}"/>
-        <ListView x:Name="VenueListView" HorizontalOptions="FillAndExpand">
+        <Entry x:Name="ExperienceEntry" Text="{Binding Experience, Mode=TwoWay}"/>
+        <ListView x:Name="VenueListView" HorizontalOptions="FillAndExpand" ItemsSource="{Binding Venues}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

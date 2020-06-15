@@ -22,10 +22,11 @@
                Placeholder="Confirm password"
                IsPassword="True"
                TextColor="{StaticResource blueColor}"
-               Text="sample"/>
+               Text="{Binding ConfirmPassword, Mode=TwoWay}"/>
         <Button x:Name="RegisterButton"
                 Text="Register"
-                Clicked="RegisterButton_OnClicked"
+                Command="{Binding RegisterCommand}"
+                CommandParameter="{Binding AnyInput}"
                 Margin="0, 50, 0, 0"></Button>
     </StackLayout>
 </ContentPage>

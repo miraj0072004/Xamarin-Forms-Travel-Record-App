@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using XamarinLearning.Models;
+using XamarinLearning.ViewModels;
 
 namespace XamarinLearning
 {
@@ -14,27 +15,18 @@ namespace XamarinLearning
     [DesignTimeVisible(false)]
     public partial class LoginPage : ContentPage
     {
+        public LoginVM LoginVm { get; set; }
         public LoginPage()
         {
             InitializeComponent();
             var assembly = typeof(LoginPage);
             iconImage.Source = ImageSource.FromResource("XamarinLearning.Assets.Images.plane.png", assembly);
+
+            LoginVm = new LoginVM {Email = "sample@jdf.com", Password = "sample"};
+            this.BindingContext = LoginVm;
         }
 
-        private async void LoginButton_OnClicked(object sender, EventArgs e)
-        {
-            var canLogin = await Myuser.Login(emailEntry.Text, passwordEntry.Text);
 
-            if (canLogin)
-            {
-                await Navigation.PushAsync(new HomePage());
-            }
-            else
-            {
-                await DisplayAlert("Error", "Try again", "Ok");
-            }
-
-        }
 
         private void RegisterUserButton_OnClicked(object sender, EventArgs e)
         {

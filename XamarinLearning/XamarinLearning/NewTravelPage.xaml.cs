@@ -8,6 +8,7 @@ using SQLite;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XamarinLearning.Models;
+using XamarinLearning.ViewModels;
 
 namespace XamarinLearning
 {
@@ -15,24 +16,29 @@ namespace XamarinLearning
     public partial class NewTravelPage : ContentPage
     {
         private Post post;
+
         public NewTravelPage()
         {
             InitializeComponent();
-            post = new Post();
-            postStackLayout.BindingContext = post;
+            //post = new Post();
+            //postStackLayout.BindingContext = post;
+
+            NewTravelPageVM newTravelPageVm = new NewTravelPageVM();
+            BindingContext = newTravelPageVm;
         }
 
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
+        //protected override async void OnAppearing()
+        //{
+        //    base.OnAppearing();
 
-            var locator = CrossGeolocator.Current;
-            var position = await locator.GetPositionAsync();
+        //    //var locator = CrossGeolocator.Current;
+        //    //var position = await locator.GetPositionAsync();
 
-            //var venues = await VenueLogic.GetVenues(position.Latitude, position.Longitude);
-            var venues = await Venue.GetVenues(position.Latitude, position.Longitude);
-            VenueListView.ItemsSource = venues;
-        } 
+        //    //var venues = await VenueLogic.GetVenues(position.Latitude, position.Longitude);
+
+        //    //var venues = await Venue.GetVenues(position.Latitude, position.Longitude);
+        //    //VenueListView.ItemsSource = venues;
+        //} 
 
         private async void MenuItem_OnClicked(object sender, EventArgs e)
         {
