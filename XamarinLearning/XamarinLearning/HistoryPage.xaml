@@ -12,7 +12,8 @@
             <converters:DateTimeToStringConverter x:Key="Converter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ListView x:Name="PostListView">
+    <ListView x:Name="PostListView"
+              ItemsSource="{Binding Posts}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <TextCell Text="{Binding Experience}"

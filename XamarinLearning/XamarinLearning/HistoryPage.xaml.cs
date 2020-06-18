@@ -7,18 +7,23 @@ using SQLite;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XamarinLearning.Models;
+using XamarinLearning.ViewModels;
 
 namespace XamarinLearning
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HistoryPage : ContentPage
     {
+        private HistoryVm historyVm;
         public HistoryPage()
         {
+            
             InitializeComponent();
+            historyVm = new HistoryVm();
+            BindingContext = historyVm;
         }
 
-        protected async override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
@@ -29,9 +34,9 @@ namespace XamarinLearning
             //    PostListView.ItemsSource = posts;
             //}
 
-            var posts = await Post.Read();
+            //var posts = await Post.Read();
 
-            PostListView.ItemsSource = posts;
+            historyVm.UpdatePosts();
 
 
 
