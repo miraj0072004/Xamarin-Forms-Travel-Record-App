@@ -149,6 +149,19 @@ namespace XamarinLearning.Models
             }
         }
 
+        private DateTimeOffset _createdAt;
+
+        public DateTimeOffset CreatedAt
+        {
+            get { return _createdAt; }
+            set
+            {
+                _createdAt = value;
+                OnPropertyChanged();
+            }
+        }
+
+
 
         public static async void InsertPost(Post post)
         {

@@ -85,6 +85,7 @@ namespace XamarinLearning.ViewModels
                 post.Longitude = selectedVenue.location.lng;
                 post.VenueName = selectedVenue.name;
                 post.UserId = App.user.Id;
+                post.CreatedAt = DateTime.Now;
 
 
 

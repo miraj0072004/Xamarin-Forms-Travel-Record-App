@@ -4,11 +4,19 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="XamarinLearning.HistoryPage">
+             x:Class="XamarinLearning.HistoryPage"
+             xmlns:converters ="clr-namespace:XamarinLearning.ViewModels.Converters;assembly=XamarinLearning">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DateTimeToStringConverter x:Key="Converter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ListView x:Name="PostListView">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <TextCell Text="{Binding Experience}"/>
+                <TextCell Text="{Binding Experience}"
+                          Detail="{Binding CreatedAt, Converter={StaticResource Converter}}"/>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
