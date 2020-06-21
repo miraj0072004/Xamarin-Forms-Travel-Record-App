@@ -56,7 +56,7 @@ namespace XamarinLearning.ViewModels
 
         public NewTravelPageVM()
         {
-           GetVenues();
+           //GetVenues(); Moved the Venue assignment to the code behind file in order to use the permission setup code
            AddPostCommand = new AddPostCommand(this);
         }
 

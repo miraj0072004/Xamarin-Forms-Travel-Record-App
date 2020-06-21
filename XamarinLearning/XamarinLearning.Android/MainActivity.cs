@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Microsoft.WindowsAzure.MobileServices;
+using Plugin.CurrentActivity;
 using Environment = System.Environment;
 
 namespace XamarinLearning.Droid
@@ -31,6 +32,8 @@ namespace XamarinLearning.Droid
             string dbName = "travel_db.sqlite";
             string folderPath = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             string fullPath = Path.Combine(folderPath, dbName);
+
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
 
             LoadApplication(new App(fullPath));
         }

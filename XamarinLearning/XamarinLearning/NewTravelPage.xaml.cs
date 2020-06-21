@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Plugin.Geolocator;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using SQLite;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -24,8 +26,45 @@ namespace XamarinLearning
             //postStackLayout.BindingContext = post;
 
             NewTravelPageVM newTravelPageVm = new NewTravelPageVM();
+            GetVenues(newTravelPageVm);
+            
             BindingContext = newTravelPageVm;
+
+            
         }
+
+        private async void GetVenues(NewTravelPageVM viewModel)
+        {
+            var status =
+                await CrossPermissions.Current.CheckPermissionStatusAsync<LocationPermission>();
+
+            if (status != PermissionStatus.Granted)
+            {
+                if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Location))
+                {
+                    await DisplayAlert("Need Permission","We will have to access your location", "Ok");
+                }
+
+                var results = await CrossPermissions.Current.RequestPermissionAsync<LocationPermission>();
+                if (results == PermissionStatus.Granted)
+                {
+                    status = results;
+                }
+            }
+            if (status == PermissionStatus.Granted)
+            {
+                var locator = CrossGeolocator.Current;
+                var position = await locator.GetPositionAsync();
+                viewModel.Venues = await Venue.GetVenues(position.Latitude, position.Longitude);
+            }
+            else
+            {
+                await DisplayAlert("No Permission",
+                    "You didn't grant permission to access your location, we cannot proceed", "Ok");
+            }
+        }
+
+        public List<Venue> Venues { get; set; }
 
         //protected override async void OnAppearing()
         //{
