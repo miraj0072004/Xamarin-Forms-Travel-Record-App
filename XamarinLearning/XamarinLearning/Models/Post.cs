@@ -168,6 +168,20 @@ namespace XamarinLearning.Models
             await App.MobileService.GetTable<Post>().InsertAsync(post);
         }
 
+        public static async Task<bool> DeletePost(Post post)
+        {
+            try
+            {
+                await App.MobileService.GetTable<Post>().DeleteAsync(post);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
         public static async Task<List<Post>> Read()
         {
             var posts = await App.MobileService.GetTable<Post>().

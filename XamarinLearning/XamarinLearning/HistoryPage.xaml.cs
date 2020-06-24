@@ -41,5 +41,19 @@ namespace XamarinLearning
 
 
         }
+
+        private void MenuItem_OnClicked(object sender, EventArgs e)
+        {
+            var post = (Post) ((MenuItem) sender).CommandParameter;
+            historyVm.DeletePost(post);
+
+            historyVm.UpdatePosts();
+        }
+
+        private async void PostListView_OnRefreshing(object sender, EventArgs e)
+        {
+            await historyVm.UpdatePosts();
+            PostListView.IsRefreshing = false;
+        }
     }
 }
