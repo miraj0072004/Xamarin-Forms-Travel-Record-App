@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.WindowsAzure.MobileServices;
 using SQLite;
 using XamarinLearning.Annotations;
 
@@ -165,14 +166,18 @@ namespace XamarinLearning.Models
 
         public static async void InsertPost(Post post)
         {
-            await App.MobileService.GetTable<Post>().InsertAsync(post);
+            //await App.MobileService.GetTable<Post>().InsertAsync(post);
+            await App.postTable.InsertAsync(post);
+            await App.MobileService.SyncContext.PushAsync();
         }
 
         public static async Task<bool> DeletePost(Post post)
         {
             try
             {
-                await App.MobileService.GetTable<Post>().DeleteAsync(post);
+                //await App.MobileService.GetTable<Post>().DeleteAsync(post);
+                await App.postTable.DeleteAsync(post);
+                await App.MobileService.SyncContext.PushAsync();
                 return true;
             }
             catch (Exception)
@@ -184,7 +189,10 @@ namespace XamarinLearning.Models
 
         public static async Task<List<Post>> Read()
         {
-            var posts = await App.MobileService.GetTable<Post>().
+            //var posts = await App.MobileService.GetTable<Post>().
+            //    Where(p => p.UserId == App.user.Id).ToListAsync();
+
+            var posts = await App.postTable.
                 Where(p => p.UserId == App.user.Id).ToListAsync();
 
             return posts;

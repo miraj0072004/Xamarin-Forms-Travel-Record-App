@@ -33,6 +33,7 @@ namespace XamarinLearning
             DatabaseLocation = databaseLocation;
 
             var store = new MobileServiceSQLiteStore(databaseLocation);
+            
             store.DefineTable<Post>();
 
             MobileService.SyncContext.InitializeAsync(store);

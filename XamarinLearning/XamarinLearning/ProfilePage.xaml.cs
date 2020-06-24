@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SQLite;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinLearning.Helpers;
 using XamarinLearning.Models;
 
 namespace XamarinLearning
@@ -53,6 +54,10 @@ namespace XamarinLearning
 
             //    CategoriesListView.ItemsSource = categoriesCount;
             //}
+
+            //For syncing with the cloud
+
+            await AzureAppServiceHelper.SyncAsync();
 
 
             var postTable = await Post.Read();
